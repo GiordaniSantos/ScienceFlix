@@ -5,8 +5,17 @@ import { Link } from 'react-router-dom';
 function CadastroCategoria() {
     return(
         <PageDefault>
-            <h1>Cadastro de Categoria</h1>
+            <form>
 
+                <label>
+                    Nome da categoria:
+                    <input type="text"/>
+
+                    <button>Cadastrar</button>
+                </label>
+
+
+            </form>
 
             <Link to="/">
                 Voltar para home
