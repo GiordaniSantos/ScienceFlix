@@ -1,11 +1,11 @@
 import React from 'react';
-import Menu from './components/index';
-import dadosIniciais from './components/data/dados_iniciais.json';
-import BannerMain from './components/BannerMain';
-import Carousel from './components/Carousel';
-import Footer from './components/Footer';
+import Menu from '../../components/index';
+import dadosIniciais from '../../components/data/dados_iniciais.json';
+import BannerMain from '../../components/BannerMain';
+import Carousel from '../../components/Carousel';
+import Footer from '../../components/Footer';
 
-function App() {
+function Home() {
   return (
     <div style={{ background: "#141414" }}>
     <Menu />
@@ -13,7 +13,7 @@ function App() {
     <BannerMain
       videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
       url={dadosIniciais.categorias[0].videos[0].url}
-      videoDescription={"O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"}
+      videoDescription={"Logo após o surgimento do Universo, quantidades iguais de matéria e antimatéria foram criadas. Esse é um dos maiores enigmas do Universo atual: o sumiço da antimatéria."}
     />
 
     <Carousel
@@ -47,4 +47,4 @@ function App() {
   
 }
 
-export default App;
+export default Home;
