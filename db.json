@@ -1,0 +1,16 @@
+{
+    "categorias": [
+       {
+        "id": 1,
+        "nome": "Full Stack",
+        "descricao": "Categoria sobre programação web",
+        "cor": "#cbd1ff" 
+       } ,
+       {
+        "id": 2,
+        "nome": "Questões do Universo",
+        "descricao": "Como funciona?",
+        "cor": "#cbd1ff" 
+       }  
+    ]
+}
