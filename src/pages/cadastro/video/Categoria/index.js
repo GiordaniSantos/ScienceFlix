@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../../components/PageDefault';
 import FormField from '../../../../components/FormField';
-import Button from '../../../../components/Button';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -16,7 +15,7 @@ function CadastroCategoria() {
   const [values, setValues] = useState(valoresIniciais);
 
   function setValue(chave, valor) {
-    // chave: nome, descricao, bla, bli
+    // chave: nome, descricao,
     setValues({
       ...values,
       [chave]: valor, // nome: 'valor'
@@ -30,21 +29,15 @@ function CadastroCategoria() {
     );
   }
 
-  // ============
-
   useEffect(() => {
-    if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categorias';
-      fetch(URL)
-        .then(async (res) => {
-          if (res.ok) {
-            const response = await res.json();
-            setCategorias(response);
-            return;
-          }
-          throw new Error('Não foi possível pegar os dados');
-        });
-    }
+    console.log('alo');
+    const URL = window.location.hostname.includes('localhost') ? 'http://localhost:8080/categorias' : 'https://science-flixx.herokuapp.com/categorias';
+    fetch(URL).then(async (res) => {
+      const response = await res.json();
+      setCategorias([
+        ...response,
+      ]);
+    });
   }, []);
 
   return (
@@ -75,7 +68,7 @@ function CadastroCategoria() {
         />
 
         <FormField
-          label="Descrição:"
+          label="Descrição"
           type="????"
           name="descricao"
           value={values.descricao}
@@ -94,11 +87,12 @@ function CadastroCategoria() {
           Cadastrar
         </button>
       </form>
+      
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.id}`}>
-            {categoria.titulo}
+          <li key={`${categoria.nome}`}>
+            {categoria.nome}
           </li>
         ))}
       </ul>

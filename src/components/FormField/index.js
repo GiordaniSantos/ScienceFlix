@@ -79,17 +79,14 @@ const Input = styled.input`
 function FormField({
   label, type, name, value, onChange,
 }) {
-  const fieldId = `id_${name}`;
   const isTypeTextArea = type === 'textarea';
   const tag = isTypeTextArea ? 'textarea' : 'input';
 
   return (
     <FormFieldWrapper>
 
-      <Label
-        htmlFor={fieldId}
-      >
-        <Input as={tag} id={fieldId} type={type} value={value} name={name} onChange={onChange} />
+      <Label>
+        <Input as={tag} type={type} value={value} name={name} onChange={onChange} />
 
         <Label.Text>
         {label}
@@ -104,7 +101,6 @@ function FormField({
 FormField.defaultProps = {
   type: 'text',
   value: '',
-  onChange: () => {},
 };
 
 FormField.propTypes = {
@@ -112,7 +108,7 @@ FormField.propTypes = {
   type: PropType.string,
   name: PropType.string.isRequired,
   value: PropType.string,
-  onChange: PropType.func,
+  onChange: PropType.func.isRequired,
 };
 
 export default FormField;
