@@ -1,7 +1,10 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable linebreak-style */
 import React from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const FormFieldWrapper = styled.div`
@@ -77,21 +80,46 @@ const Input = styled.input`
 `;
 
 function FormField({
-  label, type, name, value, onChange,
+  label, type, name, value, onChange, /* , suggestions, */
 }) {
+  const fieldId = `id_${name}`;
   const isTypeTextArea = type === 'textarea';
   const tag = isTypeTextArea ? 'textarea' : 'input';
+
+  // const hasSuggestions = Boolean(suggestions.length);
 
   return (
     <FormFieldWrapper>
 
-      <Label>
-        <Input as={tag} type={type} value={value} name={name} onChange={onChange} />
+      <Label htmlFor={fieldId}>
+        <Input
+          as={tag}
+          type={type}
+          value={value}
+          name={name}
+          onChange={onChange}
+          // autoComplete={hasSuggestions ? 'off' : 'on'}
+         // list={hasSuggestions ? `suggestionFor_${fieldId}` : undefined}
+        />
 
         <Label.Text>
         {label}
         :
         </Label.Text>
+        {
+     /*      hasSuggestions && (
+            <datalist id={`suggestionFor_${fieldId}`}>
+            {
+              suggestions.map((suggestion) => {
+                <option value={suggestion} key={`suggestionFor_${fieldId}_option${suggestion}`}>
+                  {suggestion}
+                </option>;
+              })
+            }
+            </datalist>
+          ) */
+        }
+
       </Label>
 
     </FormFieldWrapper>
@@ -101,14 +129,17 @@ function FormField({
 FormField.defaultProps = {
   type: 'text',
   value: '',
+  onChange: () => {},
+  // suggestions: [],
 };
 
 FormField.propTypes = {
-  label: PropType.string.isRequired,
-  type: PropType.string,
-  name: PropType.string.isRequired,
-  value: PropType.string,
-  onChange: PropType.func.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  // suggestions: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default FormField;

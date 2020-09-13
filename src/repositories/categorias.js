@@ -4,6 +4,18 @@ import URL from '../config/index';
 
 const CATEGORIAS_URL = `${URL}/categorias`;
 
+function getAll() {
+    
+  return fetch(`${CATEGORIAS_URL}`).then(async (res) => {
+    if (res.ok) {
+      const response = await res.json();
+      return response;
+    }
+
+    throw new Error('Não foi possível pegar os dados:');
+  });
+}
+
 function getAllWithVideos() {
     
   return fetch(`${CATEGORIAS_URL}?_embed=videos`).then(async (res) => {
@@ -18,4 +30,5 @@ function getAllWithVideos() {
 
 export default {
   getAllWithVideos,
+  getAll,
 };
