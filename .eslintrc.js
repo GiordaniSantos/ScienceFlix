@@ -14,6 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      experimentalObjectRestSpread: true
     },
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -24,4 +25,5 @@ module.exports = {
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
+  parser: "babel-eslint",
 };

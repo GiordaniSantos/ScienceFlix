@@ -1,9 +1,14 @@
+/* eslint-disable keyword-spacing */
+/* eslint-disable padded-blocks */
+/* eslint-disable no-unused-vars */
 /* eslint-disable eol-last */
 /* eslint-disable linebreak-style */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../../components/PageDefault';
 import FormField from '../../../../components/FormField';
+import useForm from '../../../../hooks/useForm';
+import Button from '../../../../components/Button';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -11,26 +16,12 @@ function CadastroCategoria() {
     descricao: '',
     cor: '',
   };
+
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
-
-  function setValue(chave, valor) {
-    // chave: nome, descricao,
-    setValues({
-      ...values,
-      [chave]: valor, // nome: 'valor'
-    });
-  }
-
-  function handleChange(infosDoEvento) {
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-    );
-  }
 
   useEffect(() => {
-    console.log('alo');
     const URL = window.location.hostname.includes('localhost') ? 'http://localhost:8080/categorias' : 'https://science-flixx.herokuapp.com/categorias';
     fetch(URL).then(async (res) => {
       const response = await res.json();
@@ -55,7 +46,7 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setValues(valoresIniciais);
+        clearForm();
       }}
       >
 
@@ -83,11 +74,10 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        <button type="submit">
+        <Button type="submit">
           Cadastrar
-        </button>
+        </Button>
       </form>
-      
 
       <ul>
         {categorias.map((categoria) => (
